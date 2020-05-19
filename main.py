@@ -1,5 +1,13 @@
 
-import http.client, urllib.request, urllib.parse, urllib.error, base64, json, requests, sys
+import http.client
+import urllib.request
+import urllib.parse
+import urllib.error
+import base64
+import json
+import requests
+import sys
+
 apiKey = '2da3fcfc1ed84e639ce64260025b74d7'
 user = 'Brando006'
 headers = {
@@ -51,22 +59,40 @@ for x in playlists:
     match = playlistData(playlists[count].get('name'),playlists[count].get('description'),playlists[count].get('isRanked'),playlists[count].get('imageUrl'),playlists[count].get('gameMode'),playlists[count].get('isActive'),playlists[count].get('id'),playlists[count].get('contentId'))
     playlistList.append(match)
     count = count + 1
-print(len(playlistList))
-for gameType in playlistList:
-    print(gameType.name,gameType.description)
+##print(len(playlistList))
 
-"""mStatsUrl = '/stats/h5/servicerecords/arena?players=' + testUser.gamerTag
+mStatsUrl = '/stats/h5/servicerecords/arena?players=' + testUser.gamerTag
 response = requests.get(connectionUrl+mStatsUrl, headers=headers)
 matchStatsDict = response.json()
-print(matchStatsDict.keys())
-print(matchStatsDict.get('Results'))
-"""
+##print(matchStatsDict.keys())
+##print(matchStatsDict.get('Results'))
 
 
 
+class H5Weapons:
+    def __init__(self,name,description,weaponType,largeIconImageUrl,smallIconImageUrl,isUsableByPlayer,weaponId,contentId):
+        self.name = name
+        self.description = description
+        self.weaponType = weaponType
+        self.largeIconImageUrl = largeIconImageUrl
+        self.smallIconImageUrl = smallIconImageUrl
+        self.isUsableByPlayer = isUsableByPlayer
+        self.weaponId = weaponId
+        self.contentId = contentId
 
-
-
+weaponListURL = '/metadata/h5/metadata/weapons'
+weaponResponse = requests.get(connectionUrl+weaponListURL, headers=headers)
+weaponsList = weaponResponse.json()
+weaponsDict = []
+wCount = 0
+for w in weaponsList:
+    weapon = H5Weapons(weaponsList[wCount].get('name'),weaponsList[wCount].get('description'),weaponsList[wCount].get('type'),weaponsList[wCount].get('largeIconImageUrl'),weaponsList[wCount].get('smallIconImageUrl'),weaponsList[wCount].get('isUsableByPlayer'),weaponsList[wCount].get('id'),weaponsList[wCount].get('contentId'))
+    weaponsDict.append(weapon)
+    wCount += 1
+for s in weaponsDict:
+    if s.name == 'Sniper Rifle':
+        print(s.name,s.description,s.weaponType,s.weaponId)
+        break
 
 
 

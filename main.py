@@ -5,8 +5,8 @@ import urllib.parse
 import urllib.error
 import base64
 import json
-import requests
 import sys
+import requests
 
 apiKey = '2da3fcfc1ed84e639ce64260025b74d7'
 user = 'Brando006'
@@ -19,15 +19,9 @@ params = urllib.parse.urlencode({
 })
 
 
-class profileData:
-    def __init__(self,gamerTag,serviceTag,companyName,companyId):
-        self.gamerTag = gamerTag
-        self.serviceTag = serviceTag
-        self.companyName = companyName
-        self.companyId = companyId
 
 
-connectionUrl = 'https://www.haloapi.com'
+"""connectionUrl = 'https://www.haloapi.com'
 requestUrl = '/profile/h5/profiles/'+ user + '/appearance?'
 response = requests.get(connectionUrl+requestUrl, headers=headers)
 profileDict = response.json()
@@ -39,16 +33,6 @@ profileDict = response.json()
 testUser = profileData(user,profileDict.get('ServiceTag'),profileDict.get('Company').get('Name'),profileDict.get('Company').get('Id'))
 print(testUser.gamerTag, testUser.serviceTag,testUser.companyId, testUser.companyName)
 
-class playlistData:
-    def __init__(self, name, description, isRanked, imageUrl, gameMode, isActive, id, contentId):
-        self.name = name
-        self.description = description
-        self.isRanked = isRanked
-        self.imageUrl = imageUrl
-        self.gameMode = gameMode
-        self.isActive = isActive
-        self.id = id
-        self.contentId = contentId
 
 playlistURL = '/metadata/h5/metadata/playlists'
 response = requests.get(connectionUrl+playlistURL, headers=headers)
@@ -69,16 +53,7 @@ matchStatsDict = response.json()
 
 
 
-class H5Weapons:
-    def __init__(self,name,description,weaponType,largeIconImageUrl,smallIconImageUrl,isUsableByPlayer,weaponId,contentId):
-        self.name = name
-        self.description = description
-        self.weaponType = weaponType
-        self.largeIconImageUrl = largeIconImageUrl
-        self.smallIconImageUrl = smallIconImageUrl
-        self.isUsableByPlayer = isUsableByPlayer
-        self.weaponId = weaponId
-        self.contentId = contentId
+
 
 weaponListURL = '/metadata/h5/metadata/weapons'
 weaponResponse = requests.get(connectionUrl+weaponListURL, headers=headers)
@@ -97,3 +72,4 @@ for s in weaponsDict:
 
 
 
+"""

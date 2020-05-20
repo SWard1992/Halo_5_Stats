@@ -6,8 +6,10 @@ import base64
 import json
 import requests
 import sys
+
 from playlistdata import playlistData
 from profiledata import profileData
+from h5weapons import H5Weapons
 
 apiKey = '2da3fcfc1ed84e639ce64260025b74d7'
 defaultUser = 'Brando006'

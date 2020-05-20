@@ -1,5 +1,5 @@
 import flask
-from service import getUserData
+import service
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -11,6 +11,6 @@ def demo():
 
 @app.route('/profiles/<user>', methods=['GET'])
 def getUserProfile(user=None):
-    return getUserData(user)
+    return service.getUserData(user)
 
 app.run()
